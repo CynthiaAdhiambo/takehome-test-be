@@ -14,6 +14,8 @@ Your mission will be to build a web API that can be used to play a Futurama Triv
 - The player will be able to see if their answer was correct or incorrect
 - The player will be able to see their score at the end of the game
 
+Feel free to use Javascript or Typescript to build the API. You can use any database you like, but we recommend using PostgreSQL. Use npm modules as you see fit, you do not have to reinvent the wheel if you can avoid it. Remember to take notes in the [notes section](#your-notes).
+
 ## Evaluation criteria
 
 We will use this project as the basis for evaluating your skill as a developer.
