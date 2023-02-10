@@ -10,9 +10,9 @@ router.get("/", QuestionsController.get_all_questions);
 
 router.post("/", checkAuth, QuestionsController.create_questions);
 
-router.get("/:orderId",  QuestionsController.get_question_details);
+router.get("/:questionId",  QuestionsController.get_question_details);
 
-router.delete("/:orderId", checkAuth, QuestionsController.delete_question);
+router.delete("/:questionId", checkAuth, QuestionsController.delete_question);
 
 
 module.exports = router;

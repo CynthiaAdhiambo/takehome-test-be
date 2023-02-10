@@ -8,6 +8,8 @@ const questionsRoutes = require("./apis/routes/questions-routes"); // importing 
 const scoresRoutes = require("./apis/routes/scores-routes"); // importing the scores routes
 const usersRoutes = require("./apis/routes/users-routes"); // importing the scores routes
 
+
+console.log('reading env file', process.env.MONGO_ATLAS_PW);
 // connecting to mongo db atlas
 mongoose.connect(
   "mongodb+srv://admin:" +
