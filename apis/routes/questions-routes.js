@@ -10,7 +10,9 @@ router.get("/", QuestionsController.get_all_questions);
 
 router.post("/", checkAuth, QuestionsController.create_questions);
 
-router.get("/:questionId",  QuestionsController.get_question_details);
+router.get("/play",  QuestionsController.get_session_questions);
+router.post("/play",  QuestionsController.player_submitted_answers);
+
 
 router.delete("/:questionId", checkAuth, QuestionsController.delete_question);
 
