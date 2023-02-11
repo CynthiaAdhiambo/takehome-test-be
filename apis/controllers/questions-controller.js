@@ -203,8 +203,19 @@ exports.player_submitted_answers = (req, res, next) => {
       });
     });
     
-
-
+// TO DO: fix failing build when post request is sent
+/*
+Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:400:5)
+    at ServerResponse.setHeader (node:_http_outgoing:663:11)
+    at ServerResponse.header (/home/cynthia/learning/namiri/takehome-test-be/node_modules/express/lib/response.js:794:10)
+    at ServerResponse.send (/home/cynthia/learning/namiri/takehome-test-be/node_modules/express/lib/response.js:174:12)
+    at ServerResponse.json (/home/cynthia/learning/namiri/takehome-test-be/node_modules/express/lib/response.js:278:15)
+    at /home/cynthia/learning/namiri/takehome-test-be/apis/controllers/questions-controller.js:201:30
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {
+  code: 'ERR_HTTP_HEADERS_SENT'
+}
+*/
   
 });
 
