@@ -133,6 +133,8 @@ exports.get_session_questions = (req, res, next) => {
 // POST PLAYER ANSWER
 exports.player_submitted_answers = (req, res, next) => {
   let count = 0;
+  let total = 0;
+  let correct = false;
   let scoring;
   let allScores = []
   let submission = req.body
@@ -141,55 +143,41 @@ exports.player_submitted_answers = (req, res, next) => {
 
     // console.log("my element", element.question)
     if(!element.question){
-      res.status(404).json({
+      return res.status(404).json({
       message: "question not found"
       });
     }
     Question.findById(element.question)
     .then(question => {
-      // console.log("i am the product", question)
-      // if (!question) {
-      //   return res.status(404).json({
-      //     message: "Product not found"
-      //   });
-      // }
-
-      // console.log("wonder q.a", question.correct_answer)
-      // console.log("wonder e.a", element.answer)
-      // console.log("wonder r.a", req.body.answer)
         if(element.answer == question.correct_answer ){
-          count += 1
-          // console.log("true all good", element.answer)
-          scoring = new Score({
-            _id: mongoose.Types.ObjectId(),
-            question: element.question,
-            answer: element.answer,
-            score: count
-          });
-        // console.log("working scores",scoring)
+          count = 1
+          correct = true;
+
+          total += 1
+         
+        }else{
+          count = 0;
+          correct = false;
+        } 
+        scoring = new Score({
+          _id: mongoose.Types.ObjectId(),
+          question: element.question,
+          answer: element.answer,
+          is_correct: correct,
+          score: count
+        });
+      // console.log("working scores",scoring)
         allScores.push(scoring)
 
-          return scoring.save();
-        }
+        return scoring.save();
 
       
     })
     .then(result => {
       console.log("submission2", allScores)
-
-      // console.log("chosen",result);
-      // let savedScores = result.map(scoreResult => {score: count});
-
-      // allScores.push(result)
-      // console.log("all scores array", allScores)
       return res.status(201).json({
         message: "Scores stored",
-        createdScoreResult: [allScores],
-        //   // _id: result._id,
-        //   question: result.question,
-        //   answer: result.answer,
-        //   score: req.body.score
-        // },
+        createdScoreResult: [allScores, {total_score: total}],
         request: {
           type: "GET",
           url: "http://localhost:3000/questions/" 
