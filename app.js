@@ -2,19 +2,18 @@ const express = require("express");
 const app = express();
 
 //api documentation imports
-const swaggerUI = require('swagger-ui-express'); // bind swagger with express and show ui provided by swagger jsdoc
-const swaggerJsDoc = require('swagger-jsdoc'); // for api documentation
+const swaggerUI = require("swagger-ui-express"); // bind swagger with express and show ui provided by swagger jsdoc
+const swaggerJsDoc = require("swagger-jsdoc"); // for api documentation
 
 const morgan = require("morgan"); // Logging package
 const bodyParser = require("body-parser"); // parse body of incoming requests (supports url encoded bodies, json data)
-const mongoose = require("mongoose"); 
+const mongoose = require("mongoose");
 
 const questionsRoutes = require("./apis/routes/questions-routes"); // importing the questions routes
 const scoresRoutes = require("./apis/routes/scores-routes"); // importing the scores routes
 const usersRoutes = require("./apis/routes/users-routes"); // importing the scores routes
 
-
-console.log('reading env file', process.env.MONGO_ATLAS_PW);
+console.log("reading env file", process.env.MONGO_ATLAS_PW);
 // connecting to mongo db atlas
 mongoose.connect(
   "mongodb+srv://admin:" +
@@ -51,30 +50,34 @@ const swaggerOptions = {
   swaggerDefinition: {
     info: {
       title: "Futurama Game API",
-      version: '1.0.0',
+      version: "1.0.0",
     },
     securityDefinition: {
       bearerAuth: {
-        type: 'apiKey',
-        name: 'Authorization',
-        scheme: 'bearer',
-        in: 'header',
+        type: "apiKey",
+        name: "Authorization",
+        scheme: "bearer",
+        in: "header",
       },
-    }
+    },
   },
-  apis: ['./apis/routes/questions-routes.js', './apis/routes/scores-routes.js', './apis/routes/users-routes.js'],
+  apis: [
+    "./apis/routes/questions-routes.js",
+    "./apis/routes/scores-routes.js",
+    "./apis/routes/users-routes.js",
+  ],
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
-app.get('/swagger.json', (req, res) => {
-  res.setHeader('Content-Type', 'application/json');
+app.get("/swagger.json", (req, res) => {
+  res.setHeader("Content-Type", "application/json");
   res.send(swaggerDocs);
 });
 
-app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 // Routes that should handle requests
-app.use("/questions",  questionsRoutes);
+app.use("/questions", questionsRoutes);
 app.use("/scores", scoresRoutes);
 app.use("/users", usersRoutes);
 

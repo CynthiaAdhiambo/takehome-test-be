@@ -26,13 +26,13 @@ router.get("/", QuestionsController.get_all_questions);
 //  *      parameters:
 //  *       - in: header
 //  *        name: security
-//  *  
-//  *       - in: body 
+//  *
+//  *       - in: body
 //  *        question:
 //  *         schema:
 //  *          type: string,
 //  *        choices:
-//  *         schema: 
+//  *         schema:
 //  *          type: array
 //  *        correct_answer:
 //  *         schema: string
@@ -40,14 +40,14 @@ router.get("/", QuestionsController.get_all_questions);
 //  *      responses:
 //  *       201:
 //  *        description: Score posted successfully,
-//  *        createdQuestion: 
+//  *        createdQuestion:
 //  *        {
 //  *         id: string,
 //  *         question: string,
 //  *         choices:  [],
 //  *         correct_answer: boolean,
 //  *        }
-//  * 
+//  *
 //  */
 router.post("/", checkAuth, QuestionsController.create_questions);
 

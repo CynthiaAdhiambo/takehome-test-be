@@ -43,8 +43,6 @@ _TODO: Give us a rough estimate of the time you spent working on the test. If yo
 
     I am faced with an error "_Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client_ " that i have been unable to resolve. This error occurs when user tries to post the answers for the game. The response in the db is as expected but the server on teh terminal throws an error. O am still working to try fix this error
 
-
-
 ## Assumptions
 
 _TODO: Did you find yourself needing to make assumptions to complete this? If so, what were they, and how did they impact your design/code?_
@@ -56,21 +54,19 @@ _TODO: Did you find yourself needing to make assumptions to complete this? If so
         2. For each question asked, player should first answer it before being asked the next question
 
     ## Assumption 2:
-    Each question answered correctly warrants one point 
+    Each question answered correctly warrants one point
 
     ## Assumption 3:
     Each session only allows for one player to play at a time
 
     ## Assumption 4:
 
-
-
-
 ## Production Readiness
 
 _TODO: Provide us with some notes about what you would do next if you had more time. Are there additional features that you would want to add? Specific improvements to the code you would make? Any additional testing or documentation?_
 
 ## Testing
+
 **Validation testing** to analyzes API projects based on three distinct sets of criteria: The API's usability as a product, its transactional behavior and its operational efficiency. i.e:
 
     Is the API designed in a way that meets its product goals or solves the problem it's supposed to?
@@ -84,6 +80,7 @@ _TODO: Provide us with some notes about what you would do next if you had more t
 **Reliability testing** to ensure the API can produce consistent results and the connection between platforms is reliable.
 
 ## Better Design & Optimization
+
     1. Adding user roles to better track the players scores depending on the authenticated users (individual player sessions instead of anonymous players )
     2. Admins to be able to add, update, get list and delete questions that the players will fetch
     3. Use POST method for player endpoints so as to attach player's each question with its corresponding answer in the same object instead of having separate get/post endpoints
@@ -92,7 +89,8 @@ _TODO: Provide us with some notes about what you would do next if you had more t
     6. Have a score board of sorts to show top 3 players or top 10 players
     7. Adding player's position in the game according to other players as well
     8. Each player should answer one question before going to the next hence they need to be logged in
-    9. 
-    
+    9.
+
 ## Database
+
     The recommended database was Postgres but i used Mongo instead since it's farmiliar. Given more time i would have learnt how to use Postgres and Node Js to meet the requirements.
