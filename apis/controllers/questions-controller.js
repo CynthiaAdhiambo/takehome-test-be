@@ -147,8 +147,7 @@ exports.player_submitted_answers = (req, res, next) => {
       message: "question not found"
       });
     }
-    Question.findById(element.question)
-    .then(question => {
+    Question.findById(element.question).then(question => {
         if(element.answer == question.correct_answer ){
           count = 1
           correct = true;
@@ -169,27 +168,35 @@ exports.player_submitted_answers = (req, res, next) => {
       // console.log("working scores",scoring)
         allScores.push(scoring)
 
-        return scoring.save();
+        scoring.save();
 
+        return res.status(201).json({
+          message: "Scores stored",
+          createdScoreResult: [allScores, {total_score: total}],
+          request: {
+            type: "GET",
+            url: "http://localhost:3000/questions/" 
+          }
+        });
       
     })
-    .then(result => {
-      console.log("submission2", allScores)
-      return res.status(201).json({
-        message: "Scores stored",
-        createdScoreResult: [allScores, {total_score: total}],
-        request: {
-          type: "GET",
-          url: "http://localhost:3000/questions/" 
-        }
-      });
-    })
-    .catch(err => {
-      console.log(err);
-      return res.status(500).json({
-        error: err
-      });
-    });
+    // .then(result => {
+    //   console.log("submission2", allScores)
+    //   return res.status(201).json({
+    //     message: "Scores stored",
+    //     createdScoreResult: [allScores, {total_score: total}],
+    //     request: {
+    //       type: "GET",
+    //       url: "http://localhost:3000/questions/" 
+    //     }
+    //   });
+    // })
+    // .catch(err => {
+    //   console.log(err);
+    //   return res.status(500).json({
+    //     error: err
+    //   });
+    // });
     
 // TO DO: fix failing build when post request is sent
 /*
