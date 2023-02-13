@@ -41,7 +41,7 @@ _TODO: Give us a rough estimate of the time you spent working on the test. If yo
 
     Three days were spent learning and 2 days spent on implementation, documentation and bug fixing. I also added routes errors(e.g not foound and other route errors), CORS handling, logging and controllers in readiness for the MVC architecture.
 
-    I am faced with an error "_Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client_ " that i have been unable to resolve. This error occurs when user tries to post the answers for the game. The response in the db is as expected but the server on teh terminal throws an error. O am still working to try fix this error
+    I am faced with an error "_Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client_ " that i was able to resolve. This error occurs when user tries to post the answers for the game. The response in the db is as expected but the server on teh terminal throws an error.
 
 ## Assumptions
 
